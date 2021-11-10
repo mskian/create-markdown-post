@@ -11,6 +11,7 @@ const {
     check,
     validationResult
 } = require('express-validator');
+const basicAuth = require('express-basic-auth');
 
 const app = express();
 const port = 3005;
@@ -64,7 +65,7 @@ app.post('/post', csrfProtection, [
     }),
     check('description', 'description length should be 100 to 140 characters Good for SEO')
     .isLength({
-        min: 100,
+        min: 60,
         max: 155
     }),
     check('postcontent', 'Fill Some Post Content').not().isEmpty().trim().escape(),
@@ -98,6 +99,74 @@ app.post('/post', csrfProtection, [
         var date = formattedDate;
         var tag = req.body.tag;
         var postcontent = req.body.postcontent;
+        let content = [{
+            title: title || "Example Post title",
+            description: description || "Example Post description",
+            date: date,
+            tag: tag || "Hello World",
+            postcontent: postcontent || "Example Post Content",
+            slug: decodeURIComponent(seo_url)
+        }];
+        let template = fs.readFileSync("./template.md").toString()
+        content.forEach(post_data => {
+            let output = render(template, post_data)
+            const clean_url = basename;
+            fs.writeFileSync(`${sitedata.storage_path}/${clean_url}.${sitedata.format}`, output)
+            console.log(post_data);
+        })
+        res.status(200).json({
+            sucess: 1,
+            message: 'Post Created'
+        });
+    }
+});
+
+app.get('/api', basicAuth({
+    users: { 'admin':sitedata.password },
+    challenge: true,
+    unauthorizedResponse: 'not authorized'
+}), [
+    check('title', 'title length should be 50 to 60 characters Good for SEO')
+    .isLength({
+        min: 10,
+        max: 65
+    }),
+    check('description', 'description length should be 100 to 140 characters Good for SEO')
+    .isLength({
+        min: 60,
+        max: 155
+    }),
+    check('postcontent', 'Fill Some Post Content').not().isEmpty().trim().escape(),
+    check('tag', 'Enter Atleast one Tag for Post').not().isEmpty().trim().escape(),
+], function(req, res) {
+
+    res.header('X-Frame-Options', 'DENY');
+    res.header('X-XSS-Protection', '1; mode=block');
+    res.header('X-Content-Type-Options', 'nosniff');
+    res.header('Strict-Transport-Security', 'max-age=63072000');
+
+    const blog_title = req.query.title
+    const random_id = Math.floor(1000 + Math.random() * 9000)
+    const basename = sitedata.url_data + "-" + random_id
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        res.status(400).json(errors);
+    } else {
+
+        const seo_url = slugify(blog_title, {
+            replacement: '-',
+            remove: /[*+~.()'"!:@]/g,
+            lower: true,
+            strict: false
+        });
+
+        var title = blog_title;
+        var description = req.query.description;
+        var date = formattedDate;
+        var tag = req.query.tag;
+        var postcontent = req.query.postcontent;
         let content = [{
             title: title || "Example Post title",
             description: description || "Example Post description",
