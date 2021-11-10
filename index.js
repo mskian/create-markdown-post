@@ -83,7 +83,7 @@ app.post('/post', csrfProtection, [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        res.status(200).json(errors);
+        res.status(400).json(errors);
     } else {
 
         const seo_url = slugify(blog_title, {

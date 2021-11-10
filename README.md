@@ -11,6 +11,8 @@ Create Markdown Post for blog and website using Mustache Template System.
 - Slugify for Generate SEO Friedly Filename and Slug
 - Auto Date Generation
 - Handlebar for HTML Template page
+- CSRF Token - <https://expressjs.com/en/resources/middleware/csurf.html>
+- axios HTTP Client for Post data
 
 ## Development
 
@@ -40,49 +42,7 @@ yarn start
 http://localhost:3005/
 ```
 
-- Post API Example
-
-```sh
-curl --request POST \
-  --url http://localhost:3005/ \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'title=Example Post' \
-  --data 'postcontent=Example Post - Example Blog Post via cURL.' \
-  --data 'tag=Hello World' \
-  --data 'description=Post Content - Hello World Blog.'
-```
-
-```php
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, [
-  CURLOPT_PORT => "3005",
-  CURLOPT_URL => "http://localhost:3005/",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "title=Example%20Post&postcontent=Example%20Post%20-%20Example%20Blog%20Post%20via%20cURL.&tag=Hello%20World&description=Post%20Content%20-%20Hello%20World%20Blog.",
-  CURLOPT_HTTPHEADER => [
-    "Content-Type: application/x-www-form-urlencoded"
-  ],
-]);
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
-```
+- Post via API (SOON)
 
 ## Modification
 
