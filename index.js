@@ -5,18 +5,28 @@ const {
 } = require("mustache");
 const sitedata = require("./config.json");
 const slugify = require("slugify");
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+const {
+    check,
+    validationResult
+} = require('express-validator');
 
 const app = express();
 const port = 3005;
-
-app.set('view engine', 'hbs');
-app.use(express.static('public'));
-app.set('views', './views');
 
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+
+app.set('view engine', 'hbs');
+app.use(express.static('public'));
+app.set('views', './views');
+app.use(cookieParser());
+const csrfProtection = csrf({
+    cookie: true
+});
 
 app.listen(port, function() {
     console.log('listening on port ' + port);
@@ -32,16 +42,34 @@ const day = getCurrentDate(date.getDate())
 const year = date.getFullYear()
 const formattedDate = year + "-" + month + "-" + day
 
-app.get('/', function(req, res) {
+app.get('/', csrfProtection, function(req, res) {
+    res.header('X-Frame-Options', 'DENY');
+    res.header('X-XSS-Protection', '1; mode=block');
+    res.header('X-Content-Type-Options', 'nosniff');
+    res.header('Strict-Transport-Security', 'max-age=63072000');
     res.render('home', {
         post: {
             title: 'Create New Markdown Post',
-            description: 'Create New Markdown Blog Post.'
+            description: 'Create New Markdown Blog Post.',
+            csrfToken: req.csrfToken()
         }
     });
 });
 
-app.post('/', function(req, res) {
+app.post('/post', csrfProtection, [
+    check('title', 'title length should be 50 to 60 characters Good for SEO')
+    .isLength({
+        min: 10,
+        max: 65
+    }),
+    check('description', 'description length should be 100 to 140 characters Good for SEO')
+    .isLength({
+        min: 100,
+        max: 155
+    }),
+    check('postcontent', 'Fill Some Post Content').not().isEmpty().trim().escape(),
+    check('tag', 'Enter Atleast one Tag for Post').not().isEmpty().trim().escape(),
+], function(req, res) {
 
     res.header('X-Frame-Options', 'DENY');
     res.header('X-XSS-Protection', '1; mode=block');
@@ -52,15 +80,12 @@ app.post('/', function(req, res) {
     const random_id = Math.floor(1000 + Math.random() * 9000)
     const basename = sitedata.url_data + "-" + random_id
 
-    if (blog_title == 0 || blog_title == "") {
+    const errors = validationResult(req);
 
-        res.status(200).json({
-            sucess: 0,
-            message: 'Error Something is Missing'
-        });
-
+    if (!errors.isEmpty()) {
+        res.status(200).json(errors);
     } else {
-        
+
         const seo_url = slugify(blog_title, {
             replacement: '-',
             remove: /[*+~.()'"!:@]/g,
@@ -101,3 +126,10 @@ app.use('/', function(req, res) {
         message: 'Web App Error'
     });
 });
+app.use(function(err, req, res, next) {
+    if (err.code !== 'EBADCSRFTOKEN') return next(err)
+    res.status(403).json({
+        error: 1,
+        message: 'Token Error'
+    });
+})

@@ -17,7 +17,7 @@
 
 <div class="container col-9" >
 <h2>{{post.title}}</h2>
-<form action="/" method="post" role="form" enctype="application/x-www-form-urlencoded">
+<form action="/post" method="post" role="form" enctype="application/x-www-form-urlencoded">
 <div class="form-group">
 <label for="Post title">Post title</label>
 <input type="text"class="form-input" name="title" id="title" placeholder="Title" required>
@@ -34,6 +34,7 @@
 <label for="Post title">Tag</label>
 <input type="text"class="form-input" name="tag" id="tag" placeholder="Post tag" required>
 </div>
+<input type="hidden" name="_csrf" value="{{ post.csrfToken }}">
 <button type="submit" class="btn btn-gotify btn-lg">Submit</button>
 </form>
 </div>
