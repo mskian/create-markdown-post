@@ -104,6 +104,11 @@ slug: "{{seo_url}}"
 
 ```
 
+## Others
+
+- Example Post - <https://github.com/mskian/create-markdown-post/tree/main/posts>
+- Modify Template Content data - <https://github.com/mskian/create-markdown-post/blob/b5fae6f8d9552181e0be05ab7687719ab6c8ca4f/index.js#L76>
+
 ## LICENSE
 
 MIT
