@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{post.title}}</title>
+<meta name="description" content="{{post.description}}" />
+
+<link href="css/spectre.min.css" rel="stylesheet" />
+<link href="css/custom.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="container col-9" >
+<h2>{{post.title}}</h2>
+<form action="/" method="post" role="form" enctype="application/x-www-form-urlencoded">
+<div class="form-group">
+<label for="Post title">Post title</label>
+<input type="text"class="form-input" name="title" id="title" placeholder="Title" required>
+</div>
+<div class="form-group">
+<label for="Description">Description</label>
+<textarea class="form-input" type="text" rows="3" name="description" id="description" autocomplete="off" placeholder="Post Description" required></textarea>
+</div>
+<div class="form-group">
+<label for="Description">Post Content</label>
+<textarea class="form-input" type="text" rows="6" name="postcontent" id="postcontent" autocomplete="off" placeholder="Post Content" required></textarea>
+</div>
+<div class="form-group">
+<label for="Post title">Tag</label>
+<input type="text"class="form-input" name="tag" id="tag" placeholder="Post tag" required>
+</div>
+<button type="submit" class="btn btn-gotify btn-lg">Submit</button>
+</form>
+</div>
+
+</body>
+</html>

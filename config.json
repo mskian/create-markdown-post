@@ -1,0 +1,5 @@
+{
+    "url_data": "example-blog",
+    "storage_path": "./posts",
+    "format": "md"
+}
