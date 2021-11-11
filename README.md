@@ -2,7 +2,7 @@
 
 Create Markdown Post for blog and website using Mustache Template System.
 
-> Under Development and Testing Stage
+Don't use this Directly - Fork this repo and Modify according to your Needs also not Recommended for Production use.
 
 ## Features
 
@@ -42,7 +42,7 @@ yarn start
 - Post New Content
 
 ```sh
-http://localhost:3005/
+http://localhost:3005/api
 ```
 
 - Post via API - it Require Basic HTTP Auth - Update password in `config.js` file
@@ -52,6 +52,12 @@ http://localhost:3005/api?title=This%20is%20Example%20Post%20title&description=T
 ```
 
 - if you want to update HTTP auth username find this line `users: { 'admin':sitedata.password },` in `index.js` - Default username `admin` and password `123456789`
+
+- Post via Javascript Markdown Editor - refer: <https://github.com/mskian/svelte-markdown-editor> - Example: `/views/editor.hbs`
+
+```sh
+http://localhost:3005/markdown
+```
 
 ## Modification
 
@@ -76,8 +82,8 @@ slug: "{{seo_url}}"
 ## Others
 
 - Example Post - <https://github.com/mskian/create-markdown-post/tree/main/posts>
-- Modify Template Content data - <https://github.com/mskian/create-markdown-post/blob/bbaa5118d5910f5f8452fdbc5983034f233f7ba5/index.js#L102>
-- HTTP Username - <https://github.com/mskian/create-markdown-post/blob/bbaa5118d5910f5f8452fdbc5983034f233f7ba5/index.js#L125>
+- Modify Template Content data - <https://github.com/mskian/create-markdown-post/blob/bbaa5118d5910f5f8452fdbc5983034f233f7ba5/index.js#L179>
+- HTTP Username - <https://github.com/mskian/create-markdown-post/blob/bbaa5118d5910f5f8452fdbc5983034f233f7ba5/index.js#L202>
 
 ## LICENSE
 
