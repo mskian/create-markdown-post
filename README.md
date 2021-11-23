@@ -1,5 +1,7 @@
 # Create Markdown Post
 
+![build-test](https://github.com/mskian/create-markdown-post/workflows/build-test/badge.svg)  
+
 Create Markdown Post for blog and website using Mustache Template System.
 
 Don't use this Directly - Fork this repo and Modify according to your Needs also not Recommended for Production use.

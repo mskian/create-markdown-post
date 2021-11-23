@@ -279,3 +279,5 @@ app.use(function(err, req, res, next) {
         message: 'Token Error'
     });
 })
+
+module.exports = app;
