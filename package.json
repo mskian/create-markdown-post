@@ -33,7 +33,7 @@
     "express-validator": "^6.14.0",
     "hbs": "^4.2.0",
     "mustache": "^4.2.0",
-    "slugify": "^1.6.3"
+    "slugify": "^1.6.4"
   },
   "devDependencies": {
     "mocha": "^9.1.3",
