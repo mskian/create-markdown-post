@@ -379,13 +379,13 @@ express-basic-auth@^1.2.1:
   dependencies:
     basic-auth "^2.0.1"
 
-express-validator@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-7.0.1.tgz#435fac6b5fa838763f78eca05d2206317b92106e"
-  integrity sha512-oB+z9QOzQIE8FnlINqyIFA8eIckahC6qc8KtqLdLJcU3/phVyuhXH3bA4qzcrhme+1RYaCSwrq+TlZ/kAKIARA==
+express-validator@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-7.1.0.tgz#e6571f6a4520560e1f3fae2ceab6f56c8f26c27b"
+  integrity sha512-ePn6NXjHRZiZkwTiU1Rl2hy6aUqmi6Cb4/s8sfUsKH7j2yYl9azSpl8xEHcOj1grzzQ+UBEoLWtE1s6FDxW++g==
   dependencies:
     lodash "^4.17.21"
-    validator "^13.9.0"
+    validator "~13.12.0"
 
 express@^4.19.2:
   version "4.19.2"
@@ -1225,10 +1225,10 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-validator@^13.9.0:
-  version "13.9.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-13.9.0.tgz#33e7b85b604f3bbce9bb1a05d5c3e22e1c2ff855"
-  integrity sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA==
+validator@~13.12.0:
+  version "13.12.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.12.0.tgz#7d78e76ba85504da3fee4fd1922b385914d4b35f"
+  integrity sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==
 
 vary@~1.1.2:
   version "1.1.2"
