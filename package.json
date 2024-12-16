@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "mocha": "^10.8.2",
-    "nodemon": "^3.1.7",
+    "nodemon": "^3.1.9",
     "supertest": "^7.0.0"
   }
 }
