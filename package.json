@@ -31,7 +31,7 @@
     "express": "^4.22.1",
     "express-basic-auth": "^1.2.1",
     "express-validator": "^7.3.2",
-    "hbs": "^4.2.0",
+    "hbs": "^4.2.1",
     "mustache": "^4.2.0",
     "slugify": "^1.6.8"
   },
